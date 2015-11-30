@@ -2,6 +2,7 @@
   <dictionary name="zuilive">
     <words>
       <w>makemigrations</w>
+      <w>passwd</w>
     </words>
   </dictionary>
 </component>
