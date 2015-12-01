@@ -1,6 +1,7 @@
 # coding:utf-8
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from DjangoUeditor.models import UEditorField
 
 # Create your models here.
 # 1 django_manage.py makemigrations
@@ -62,13 +63,16 @@ class Article(models.Model):
     """
     title = models.CharField(max_length=200, verbose_name='文章标题')
     desc = models.CharField(max_length=50, verbose_name='文章描述')
-    content = models.TextField(verbose_name='文章内容')
+    content = UEditorField(u'内容   ', width=600, height=300, toolbars="full", imagePath="images/", filePath="",
+                           upload_settings={"imageMaxSize": 1204000}, settings={}, command=None,
+                           blank=True)
     click_count = models.IntegerField(default=0, verbose_name='点击次数')
     is_recommend = models.BooleanField(default=False, verbose_name='是否推荐')
     date_publish = models.DateTimeField(auto_now_add=True, verbose_name='发布时间')
     user = models.ForeignKey(User, verbose_name='作者')
     category = models.ForeignKey(Category, blank=True, null=True, verbose_name='分类')
     tag = models.ManyToManyField(Tag, verbose_name='标签')
+
 
     class Meta:
         verbose_name = '文章'

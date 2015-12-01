@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'DjangoUeditor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,10 +79,21 @@ WSGI_APPLICATION = 'blogdemo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blogdemo',
+        'USER': 'root',
+        'PASSWORD': 'zuilive',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -99,6 +111,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'upload'),
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -108,6 +121,17 @@ STATIC_URL = '/static/'
 
 # 全局配置
 SITE_NAME = '运维管理界面'
+SITE_DESC = '运维管理界面描述'
 
 # 自定义用户模型
 AUTH_USER_MODEL = 'blog.User'
+
+# 静态文件
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# 媒体配置
+MEDIA_URL = '/uploads/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
